@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "CARS24 Scraper",
+  "version": "1.0",
+  "description": "Scrape all cars data with all images from CARS24",
+  "permissions": ["activeTab", "scripting"],
+  "host_permissions": ["https://www.cars24.com/*", "https://car-catalog-gateway-in.c24.tech/*"],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

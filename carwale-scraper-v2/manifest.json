@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "CarWale Scraper",
+  "version": "2.0",
+  "description": "Scrape used cars from CarWale. Choose any city, auto-detects pages. Fast API scraping. Export JSON/CSV.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://www.carwale.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

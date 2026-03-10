@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:420px;font-family:'Segoe UI',Tahoma,sans-serif;background:#f4f6f8}
+.header{background:linear-gradient(135deg,#0072ff,#00c6ff);color:#fff;padding:16px;text-align:center}
+.header h1{font-size:18px;margin-bottom:2px}
+.header p{font-size:11px;opacity:.85}
+.content{padding:12px}
+.city-section{background:#fff;border-radius:10px;padding:14px;margin-bottom:12px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.city-section h3{font-size:13px;color:#333;margin-bottom:8px}
+.city-search{width:100%;padding:10px 12px;border:2px solid #e0e0e0;border-radius:8px;font-size:13px;outline:none;margin-bottom:8px;transition:border .2s}
+.city-search:focus{border-color:#0072ff}
+.city-grid{display:flex;flex-wrap:wrap;gap:6px;max-height:140px;overflow-y:auto}
+.city-btn{padding:6px 12px;border:2px solid #e0e0e0;border-radius:20px;background:#fff;font-size:11px;cursor:pointer;transition:all .2s;color:#555}
+.city-btn:hover{border-color:#0072ff;color:#0072ff;background:#e8f4ff}
+.city-btn.active{border-color:#0072ff;background:#0072ff;color:#fff}
+.detect-box{background:#fff;border-radius:10px;padding:12px;margin-bottom:12px;box-shadow:0 2px 6px rgba(0,0,0,.08);display:none}
+.detect-box .city-name{font-size:20px;font-weight:700;color:#0072ff}
+.detect-box .info{display:flex;gap:10px;margin-top:8px}
+.tag{background:#e8f4ff;color:#0072ff;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:600}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+.stat{background:#fff;border-radius:10px;padding:8px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.stat label{font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.5px}
+.stat .val{font-size:18px;font-weight:700;color:#333;margin-top:2px}
+.progress-container{background:#fff;border-radius:10px;padding:10px;margin-bottom:10px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.progress-bar{width:100%;height:7px;background:#e8f4ff;border-radius:4px;overflow:hidden;margin:5px 0}
+.progress-fill{height:100%;background:linear-gradient(90deg,#0072ff,#00c6ff);width:0%;transition:width .3s;border-radius:4px}
+.progress-text{font-size:11px;color:#666;text-align:center}
+.log-box{background:#0f172a;color:#22d3ee;border-radius:10px;padding:10px;height:100px;overflow-y:auto;font-family:'Courier New',monospace;font-size:10px;margin-bottom:10px}
+.log-box p{margin:1px 0}.log-box .err{color:#f87171}.log-box .ok{color:#4ade80}.log-box .info{color:#60a5fa}
+.btn{width:100%;padding:11px;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;margin-bottom:7px;transition:all .2s}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.15)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-start{background:linear-gradient(135deg,#0072ff,#00c6ff);color:#fff}
+.btn-stop{background:linear-gradient(135deg,#dc3545,#ff4444);color:#fff;display:none}
+.btn-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.btn-green{background:linear-gradient(135deg,#28a745,#5cb85c);color:#fff}
+.btn-blue{background:linear-gradient(135deg,#6f42c1,#a855f7);color:#fff}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>&#128663; CarWale Scraper v2</h1>
+  <p>Choose city &#8594; Auto-detect pages &#8594; Scrape &#8594; Download</p>
+</div>
+<div class="content">
+  <div class="city-section">
+    <h3>&#127463;&#127470; Select City</h3>
+    <input type="text" class="city-search" id="citySearch" placeholder="Search city..." autocomplete="off">
+    <div class="city-grid" id="cityGrid"></div>
+  </div>
+
+  <div class="detect-box" id="detectBox">
+    <div class="city-name" id="selectedCity">--</div>
+    <div class="info">
+      <span class="tag" id="totalPagesTag">-- pages</span>
+      <span class="tag" id="totalCarsTag">-- cars</span>
+      <span class="tag">&#9889; API Mode</span>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><label>Cars</label><div class="val" id="carCount">0</div></div>
+    <div class="stat"><label>Pages</label><div class="val" id="pageProgress">0/0</div></div>
+    <div class="stat"><label>Images</label><div class="val" id="imgCount">0</div></div>
+  </div>
+
+  <div class="progress-container">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-text" id="progressText">Select a city to begin</div>
+  </div>
+
+  <div class="log-box" id="logBox"></div>
+
+  <button class="btn btn-start" id="startBtn" disabled>&#128640; Start Scraping</button>
+  <button class="btn btn-stop" id="stopBtn">&#9724; Stop</button>
+
+  <div class="btn-row">
+    <button class="btn btn-green" id="jsonBtn" disabled>&#128196; JSON</button>
+    <button class="btn btn-blue" id="csvBtn" disabled>&#128202; CSV</button>
+  </div>
+</div>
+<script src="popup.js"></script>
+</body>
+</html>

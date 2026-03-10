@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Autocar India Full Reviews Scraper",
+  "version": "2.0",
+  "description": "Scrape all car reviews with full article content from Autocar India - exports JSON & CSV",
+  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      
+    }
+  },
+  "icons": {
+    
+  }
+}

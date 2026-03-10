@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{width:400px;font-family:'Segoe UI',Tahoma,sans-serif;background:#f5f5f5}
+    .header{background:linear-gradient(135deg,#e23744,#ff6b6b);color:#fff;padding:18px;text-align:center}
+    .header h1{font-size:18px;margin-bottom:4px}
+    .header p{font-size:11px;opacity:.85}
+    .content{padding:14px}
+    .detect-box{background:#fff;border-radius:8px;padding:12px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+    .detect-box .city{font-size:20px;font-weight:700;color:#e23744}
+    .detect-box .url{font-size:10px;color:#999;word-break:break-all;margin-top:4px}
+    .detect-box .info{font-size:12px;color:#555;margin-top:6px}
+    .detect-box .info span{font-weight:700;color:#333}
+    .stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px}
+    .stat{background:#fff;border-radius:8px;padding:10px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+    .stat label{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.5px}
+    .stat .val{font-size:20px;font-weight:700;color:#333;margin-top:2px}
+    .progress-container{background:#fff;border-radius:8px;padding:12px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+    .progress-bar{width:100%;height:8px;background:#eee;border-radius:4px;overflow:hidden;margin:6px 0}
+    .progress-fill{height:100%;background:linear-gradient(90deg,#e23744,#ff6b6b);width:0%;transition:width .3s;border-radius:4px}
+    .progress-text{font-size:12px;color:#666;text-align:center}
+    .opt-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;background:#fff;padding:10px;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.1)}
+    .opt-row label{font-size:12px;color:#333}
+    .log-box{background:#1a1a2e;color:#0f0;border-radius:8px;padding:10px;height:110px;overflow-y:auto;font-family:'Courier New',monospace;font-size:11px;margin-bottom:12px}
+    .log-box p{margin:2px 0}
+    .log-box .err{color:#ff4444}
+    .log-box .ok{color:#44ff44}
+    .log-box .info{color:#44aaff}
+    .btn{width:100%;padding:12px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;margin-bottom:8px;transition:all .2s}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.2)}
+    .btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+    .btn-start{background:linear-gradient(135deg,#e23744,#ff6b6b);color:#fff}
+    .btn-stop{background:linear-gradient(135deg,#dc3545,#ff4444);color:#fff;display:none}
+    .btn-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .btn-green{background:linear-gradient(135deg,#28a745,#5cb85c);color:#fff}
+    .btn-blue{background:linear-gradient(135deg,#007bff,#5ba3f5);color:#fff}
+    .warn{background:#fff3cd;color:#856404;padding:10px;border-radius:8px;font-size:12px;text-align:center;margin-bottom:12px;display:none}
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>&#128663; CarDekho Scraper v2</h1>
+    <p>Auto-detects city & pages | Works on any used cars page</p>
+  </div>
+  <div class="content">
+    <div class="warn" id="warnBox">&#9888; Please open a CarDekho used cars page first</div>
+    <div class="detect-box" id="detectBox">
+      <div class="city" id="cityName">Detecting...</div>
+      <div class="url" id="baseUrl"></div>
+      <div class="info">Total Pages: <span id="totalPages">--</span> | Est. Cars: <span id="estCars">--</span></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><label>Cars</label><div class="val" id="carCount">0</div></div>
+      <div class="stat"><label>Pages</label><div class="val" id="pageProgress">0/0</div></div>
+      <div class="stat"><label>Details</label><div class="val" id="detailProgress">0</div></div>
+    </div>
+
+    <div class="opt-row">
+      <input type="checkbox" id="fetchInner" checked>
+      <label for="fetchInner">Fetch full inner details for each car (recommended)</label>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text" id="progressText">Ready</div>
+    </div>
+
+    <div class="log-box" id="logBox"></div>
+
+    <button class="btn btn-start" id="startBtn">&#128640; Start Scraping</button>
+    <button class="btn btn-stop" id="stopBtn">&#9724; Stop</button>
+
+    <div class="btn-row">
+      <button class="btn btn-green" id="jsonBtn" disabled>&#128196; Download JSON</button>
+      <button class="btn btn-blue" id="csvBtn" disabled>&#128202; Download CSV</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

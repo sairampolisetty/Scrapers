@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { width: 400px; font-family: 'Segoe UI', Arial, sans-serif; background: #1a1a2e; color: #fff; padding: 20px; }
+    h1 { font-size: 18px; text-align: center; margin-bottom: 4px; color: #ff6b00; }
+    .subtitle { text-align: center; font-size: 11px; color: #888; margin-bottom: 16px; }
+    .section { background: #16213e; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+    .section h3 { font-size: 13px; color: #ff6b00; margin-bottom: 8px; }
+    label { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 6px; cursor: pointer; }
+    input[type="checkbox"] { accent-color: #ff6b00; }
+    select, input[type="number"] { background: #0f3460; border: 1px solid #333; color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 12px; width: 100%; margin-top: 4px; }
+    .row { display: flex; gap: 10px; margin-top: 6px; }
+    .row > div { flex: 1; }
+    .row label { font-size: 11px; color: #aaa; margin-bottom: 2px; }
+    button { width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; margin-top: 6px; transition: all 0.2s; }
+    #startBtn { background: #ff6b00; color: #fff; }
+    #startBtn:hover { background: #ff8533; }
+    #startBtn:disabled { background: #555; cursor: not-allowed; }
+    #stopBtn { background: #e74c3c; color: #fff; display: none; }
+    #downloadBtn { background: #27ae60; color: #fff; display: none; }
+    #downloadBtn:hover { background: #2ecc71; }
+    .progress { background: #0f3460; border-radius: 8px; overflow: hidden; height: 24px; margin-top: 10px; display: none; position: relative; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, #ff6b00, #ff8533); transition: width 0.3s; border-radius: 8px; }
+    .progress-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: bold; }
+    #log { background: #0a0a1a; border-radius: 8px; padding: 10px; margin-top: 10px; max-height: 120px; overflow-y: auto; font-family: monospace; font-size: 11px; display: none; }
+    .log-line { margin-bottom: 3px; color: #8f8; }
+    .log-error { color: #f88; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; display: none; }
+    .stat { background: #0f3460; border-radius: 8px; padding: 10px; text-align: center; }
+    .stat-val { font-size: 20px; font-weight: bold; color: #ff6b00; }
+    .stat-label { font-size: 10px; color: #888; margin-top: 2px; }
+  </style>
+</head>
+<body>
+  <h1>CARS24 Scraper</h1>
+  <p class="subtitle">Scrape all cars data with images from CARS24</p>
+
+  <div class="section">
+    <h3>Settings</h3>
+    <label><input type="checkbox" id="scrapeImages" checked> Scrape all gallery images (slower)</label>
+    <label><input type="checkbox" id="includeDetails" checked> Include car details (price, km, fuel, etc.)</label>
+    <div class="row">
+      <div>
+        <label>Max Cars (0 = all)</label>
+        <input type="number" id="maxCars" value="0" min="0" step="20">
+      </div>
+      <div>
+        <label>Export Format</label>
+        <select id="format">
+          <option value="json">JSON</option>
+          <option value="csv">CSV</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <button id="startBtn">Start Scraping</button>
+  <button id="stopBtn">Stop</button>
+
+  <div class="progress" id="progressWrap">
+    <div class="progress-bar" id="progressBar" style="width:0%"></div>
+    <div class="progress-text" id="progressText">0%</div>
+  </div>
+
+  <div class="stats" id="statsWrap">
+    <div class="stat"><div class="stat-val" id="statCars">0</div><div class="stat-label">Cars Scraped</div></div>
+    <div class="stat"><div class="stat-val" id="statImages">0</div><div class="stat-label">Images Found</div></div>
+    <div class="stat"><div class="stat-val" id="statTotal">0</div><div class="stat-label">Total Available</div></div>
+    <div class="stat"><div class="stat-val" id="statTime">0s</div><div class="stat-label">Elapsed Time</div></div>
+  </div>
+
+  <div id="log"></div>
+  <button id="downloadBtn">Download Data</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>

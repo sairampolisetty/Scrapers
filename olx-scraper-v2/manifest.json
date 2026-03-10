@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "OLX Cars Scraper v2",
+  "version": "2.1",
+  "description": "Scrape ALL used cars from OLX.in by brand/location. City & sub-location selector.",
+  "permissions": [
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://www.olx.in/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

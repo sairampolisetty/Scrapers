@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Spinny Used Cars Scraper",
+  "version": "1.0",
+  "description": "Scrape used cars from Spinny.com with city selector, auto-detection, and download as JSON/CSV",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs",
+    "downloads"
+  ],
+  "host_permissions": [
+    "https://www.spinny.com/*",
+    "https://api.spinny.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

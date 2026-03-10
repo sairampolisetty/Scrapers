@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 420px; font-family: 'Segoe UI', sans-serif; background: #f8f4ff; }
+.header { background: linear-gradient(135deg, #3D0D66, #8B3FBF); color: white; padding: 16px; text-align: center; }
+.header h1 { font-size: 18px; margin-bottom: 4px; }
+.header p { font-size: 12px; opacity: 0.8; }
+.section { padding: 12px 16px; }
+.section-title { font-size: 13px; font-weight: 600; color: #3D0D66; margin-bottom: 8px; }
+.search-box { width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; margin-bottom: 8px; }
+.search-box:focus { outline: none; border-color: #8B3FBF; }
+.city-grid { display: flex; flex-wrap: wrap; gap: 6px; max-height: 180px; overflow-y: auto; padding: 4px; }
+.city-btn { padding: 5px 10px; border: 1px solid #ddd; border-radius: 16px; background: white; font-size: 11px; cursor: pointer; transition: all 0.2s; }
+.city-btn:hover { border-color: #8B3FBF; color: #3D0D66; }
+.city-btn.active { background: #3D0D66; color: white; border-color: #3D0D66; }
+.custom-city { display: flex; gap: 8px; margin-top: 8px; }
+.custom-city input { flex: 1; padding: 6px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 12px; }
+.custom-city button { padding: 6px 12px; background: #3D0D66; color: white; border: none; border-radius: 6px; font-size: 12px; cursor: pointer; }
+.detected { background: #e8f5e9; padding: 8px 12px; border-radius: 6px; font-size: 12px; color: #2e7d32; margin-bottom: 8px; display: none; }
+.detected.show { display: block; }
+.options { display: flex; gap: 12px; margin: 8px 0; }
+.options label { font-size: 12px; display: flex; align-items: center; gap: 4px; }
+.btn { width: 100%; padding: 10px; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: all 0.2s; }
+.btn-primary { background: linear-gradient(135deg, #3D0D66, #8B3FBF); color: white; }
+.btn-primary:hover { opacity: 0.9; }
+.btn-stop { background: #dc3545; color: white; display: none; }
+.btn-stop.show { display: block; }
+.btn-primary.hide { display: none; }
+.progress { display: none; margin-top: 10px; }
+.progress.show { display: block; }
+.progress-bar { height: 6px; background: #e0e0e0; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #3D0D66, #8B3FBF); border-radius: 3px; transition: width 0.3s; width: 0%; }
+.progress-text { font-size: 11px; color: #666; margin-top: 4px; text-align: center; }
+.download-section { display: none; padding: 12px 16px; }
+.download-section.show { display: block; }
+.download-btns { display: flex; gap: 8px; }
+.btn-download { flex: 1; padding: 8px; border: 1px solid #3D0D66; border-radius: 6px; background: white; color: #3D0D66; font-size: 12px; font-weight: 600; cursor: pointer; text-align: center; }
+.btn-download:hover { background: #f3e5f5; }
+.status { font-size: 11px; color: #666; text-align: center; padding: 8px; }
+.checkbox-row { display: flex; align-items: center; gap: 6px; margin: 6px 0; }
+.checkbox-row label { font-size: 12px; color: #333; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>�� Spinny Scraper</h1>
+  <p>Scrape used cars from Spinny.com</p>
+</div>
+
+<div class="section">
+  <div class="detected" id="detected"></div>
+  <div class="section-title">Select City</div>
+  <input type="text" class="search-box" id="searchCity" placeholder="Search city...">
+  <div class="city-grid" id="cityGrid"></div>
+  <div class="custom-city">
+    <input type="text" id="customCity" placeholder="Custom city slug...">
+    <button id="useCustom">Use</button>
+  </div>
+</div>
+
+<div class="section">
+  <div class="checkbox-row">
+    <input type="checkbox" id="fetchDetails" checked>
+    <label for="fetchDetails">Fetch inner car details (specs, features, full images)</label>
+  </div>
+  <button class="btn btn-primary" id="startBtn">Start Scraping</button>
+  <button class="btn btn-stop" id="stopBtn">Stop Scraping</button>
+  <div class="progress" id="progress">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-text" id="progressText">Initializing...</div>
+  </div>
+</div>
+
+<div class="download-section" id="downloadSection">
+  <div class="section-title">Download Results</div>
+  <div class="download-btns">
+    <button class="btn-download" id="dlJson">�� Download JSON</button>
+    <button class="btn-download" id="dlCsv">�� Download CSV</button>
+  </div>
+</div>
+
+<div class="status" id="status">Select a city and click Start</div>
+
+<script src="popup.js"></script>
+</body>
+</html>
