@@ -201,7 +201,7 @@ $('startBtn').addEventListener('click', async () => {
       const pageUrl = page === 1
         ? '/used/' + selectedCityMask + '/'
         : '/used/' + selectedCityMask + '/page-' + page + '/';
-      const apiUrl = '/api/used/search/v1?cityMakeRootName=' + selectedCityMask + '&url=' + encodeURIComponent(pageUrl);
+      const apiUrl = '/api/used/search/v1?cityMakeRootName=' + selectedCityMask + '&url=' + pageUrl;
 
       const res = await chrome.scripting.executeScript({
         target: { tabId: currentTabId },
