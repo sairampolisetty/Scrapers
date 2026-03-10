@@ -1,29 +1,29 @@
 
 // ===== CITY DATABASE =====
 const CITIES = [
-  {name:"Mumbai",mask:"mumbai"},{name:"Delhi",mask:"delhi"},{name:"Bangalore",mask:"bangalore"},
-  {name:"Chennai",mask:"chennai"},{name:"Hyderabad",mask:"hyderabad"},{name:"Kolkata",mask:"kolkata"},
-  {name:"Pune",mask:"pune"},{name:"Ahmedabad",mask:"ahmedabad"},{name:"Coimbatore",mask:"coimbatore"},
-  {name:"Jaipur",mask:"jaipur"},{name:"Lucknow",mask:"lucknow"},{name:"Chandigarh",mask:"chandigarh"},
-  {name:"Kochi",mask:"kochi"},{name:"Indore",mask:"indore"},{name:"Nagpur",mask:"nagpur"},
-  {name:"Gurgaon",mask:"gurgaon"},{name:"Noida",mask:"noida"},{name:"Goa",mask:"goa"},
-  {name:"Surat",mask:"surat"},{name:"Vadodara",mask:"vadodara"},{name:"Bhopal",mask:"bhopal"},
-  {name:"Patna",mask:"patna"},{name:"Visakhapatnam",mask:"visakhapatnam"},{name:"Mysore",mask:"mysore"},
-  {name:"Mangalore",mask:"mangalore"},{name:"Thiruvananthapuram",mask:"thiruvananthapuram"},
-  {name:"Bhubaneswar",mask:"bhubaneswar"},{name:"Guwahati",mask:"guwahati"},
-  {name:"Dehradun",mask:"dehradun"},{name:"Ranchi",mask:"ranchi"},{name:"Raipur",mask:"raipur"},
-  {name:"Vijayawada",mask:"vijayawada"},{name:"Madurai",mask:"madurai"},{name:"Aurangabad",mask:"aurangabad"},
-  {name:"Nashik",mask:"nashik"},{name:"Jabalpur",mask:"jabalpur"},{name:"Ludhiana",mask:"ludhiana"},
-  {name:"Rajkot",mask:"rajkot"},{name:"Amritsar",mask:"amritsar"},{name:"Faridabad",mask:"faridabad"},
-  {name:"Ghaziabad",mask:"ghaziabad"},{name:"Agra",mask:"agra"},{name:"Varanasi",mask:"varanasi"},
-  {name:"Meerut",mask:"meerut"},{name:"Jodhpur",mask:"jodhpur"},{name:"Udaipur",mask:"udaipur"},
-  {name:"Salem",mask:"salem"},{name:"Tiruchirappalli",mask:"tiruchirappalli"},
-  {name:"Hubli",mask:"hubli"},{name:"Belgaum",mask:"belgaum"},{name:"Thrissur",mask:"thrissur"},
-  {name:"Kozhikode",mask:"kozhikode"},{name:"Navi Mumbai",mask:"navi-mumbai"},
-  {name:"Thane",mask:"thane"},{name:"Kolhapur",mask:"kolhapur"},{name:"Siliguri",mask:"siliguri"},
-  {name:"Kanpur",mask:"kanpur"},{name:"Allahabad",mask:"allahabad"},{name:"Bareilly",mask:"bareilly"},
-  {name:"Jalandhar",mask:"jalandhar"},{name:"Jammu",mask:"jammu"},{name:"Shimla",mask:"shimla"},
-  {name:"Gwalior",mask:"gwalior"},{name:"Dhanbad",mask:"dhanbad"}
+  { name: "Mumbai", mask: "mumbai" }, { name: "Delhi", mask: "delhi" }, { name: "Bangalore", mask: "bangalore" },
+  { name: "Chennai", mask: "chennai" }, { name: "Hyderabad", mask: "hyderabad" }, { name: "Kolkata", mask: "kolkata" },
+  { name: "Pune", mask: "pune" }, { name: "Ahmedabad", mask: "ahmedabad" }, { name: "Coimbatore", mask: "coimbatore" },
+  { name: "Jaipur", mask: "jaipur" }, { name: "Lucknow", mask: "lucknow" }, { name: "Chandigarh", mask: "chandigarh" },
+  { name: "Kochi", mask: "kochi" }, { name: "Indore", mask: "indore" }, { name: "Nagpur", mask: "nagpur" },
+  { name: "Gurgaon", mask: "gurgaon" }, { name: "Noida", mask: "noida" }, { name: "Goa", mask: "goa" },
+  { name: "Surat", mask: "surat" }, { name: "Vadodara", mask: "vadodara" }, { name: "Bhopal", mask: "bhopal" },
+  { name: "Patna", mask: "patna" }, { name: "Visakhapatnam", mask: "visakhapatnam" }, { name: "Mysore", mask: "mysore" },
+  { name: "Mangalore", mask: "mangalore" }, { name: "Thiruvananthapuram", mask: "thiruvananthapuram" },
+  { name: "Bhubaneswar", mask: "bhubaneswar" }, { name: "Guwahati", mask: "guwahati" },
+  { name: "Dehradun", mask: "dehradun" }, { name: "Ranchi", mask: "ranchi" }, { name: "Raipur", mask: "raipur" },
+  { name: "Vijayawada", mask: "vijayawada" }, { name: "Madurai", mask: "madurai" }, { name: "Aurangabad", mask: "aurangabad" },
+  { name: "Nashik", mask: "nashik" }, { name: "Jabalpur", mask: "jabalpur" }, { name: "Ludhiana", mask: "ludhiana" },
+  { name: "Rajkot", mask: "rajkot" }, { name: "Amritsar", mask: "amritsar" }, { name: "Faridabad", mask: "faridabad" },
+  { name: "Ghaziabad", mask: "ghaziabad" }, { name: "Agra", mask: "agra" }, { name: "Varanasi", mask: "varanasi" },
+  { name: "Meerut", mask: "meerut" }, { name: "Jodhpur", mask: "jodhpur" }, { name: "Udaipur", mask: "udaipur" },
+  { name: "Salem", mask: "salem" }, { name: "Tiruchirappalli", mask: "tiruchirappalli" },
+  { name: "Hubli", mask: "hubli" }, { name: "Belgaum", mask: "belgaum" }, { name: "Thrissur", mask: "thrissur" },
+  { name: "Kozhikode", mask: "kozhikode" }, { name: "Navi Mumbai", mask: "navi-mumbai" },
+  { name: "Thane", mask: "thane" }, { name: "Kolhapur", mask: "kolhapur" }, { name: "Siliguri", mask: "siliguri" },
+  { name: "Kanpur", mask: "kanpur" }, { name: "Allahabad", mask: "allahabad" }, { name: "Bareilly", mask: "bareilly" },
+  { name: "Jalandhar", mask: "jalandhar" }, { name: "Jammu", mask: "jammu" }, { name: "Shimla", mask: "shimla" },
+  { name: "Gwalior", mask: "gwalior" }, { name: "Dhanbad", mask: "dhanbad" }
 ];
 
 let scrapedCars = [];
@@ -40,13 +40,13 @@ const $ = id => document.getElementById(id);
 function log(msg, type) {
   const p = document.createElement('p');
   if (type) p.className = type;
-  p.textContent = (type==='err'?'\u2717 ':type==='ok'?'\u2713 ':'\u25B6 ') + msg;
+  p.textContent = (type === 'err' ? '\u2717 ' : type === 'ok' ? '\u2713 ' : '\u25B6 ') + msg;
   $('logBox').appendChild(p);
   $('logBox').scrollTop = $('logBox').scrollHeight;
 }
 
 function updateProgress(cur, tot, text) {
-  const pct = tot > 0 ? Math.round((cur/tot)*100) : 0;
+  const pct = tot > 0 ? Math.round((cur / tot) * 100) : 0;
   $('progressFill').style.width = pct + '%';
   $('progressText').textContent = text || (pct + '%');
 }
@@ -55,7 +55,7 @@ function updateProgress(cur, tot, text) {
 (async function init() {
   // Find any carwale tab
   const tabs = await chrome.tabs.query({});
-  const [activeTab] = await chrome.tabs.query({active:true,currentWindow:true});
+  const [activeTab] = await chrome.tabs.query({ active: true, currentWindow: true });
   let target = (activeTab && activeTab.url && activeTab.url.includes('carwale.com')) ? activeTab : tabs.find(t => t.url && t.url.includes('carwale.com'));
 
   if (!target) {
@@ -74,7 +74,7 @@ function updateProgress(cur, tot, text) {
         selectCity(found.name, found.mask);
       } else {
         // Unknown city in URL — still use it
-        const name = mask.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+        const name = mask.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
         selectCity(name, mask);
       }
     }
@@ -125,7 +125,7 @@ async function selectCity(name, mask) {
 
   // Update UI
   document.querySelectorAll('.city-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.city-btn').forEach(b => { if(b.textContent===name) b.classList.add('active'); });
+  document.querySelectorAll('.city-btn').forEach(b => { if (b.textContent === name) b.classList.add('active'); });
 
   $('detectBox').style.display = 'block';
   $('selectedCity').textContent = name;
@@ -157,7 +157,7 @@ async function selectCity(name, mask) {
     } else {
       log(name + ': ' + detectedTotalCars + ' cars, ' + detectedTotalPages + ' pages', 'ok');
     }
-  } catch(err) {
+  } catch (err) {
     log('Error detecting: ' + err.message, 'err');
   }
 }
@@ -210,8 +210,12 @@ $('startBtn').addEventListener('click', async () => {
       });
 
       const cars = res[0].result || [];
-      cars.forEach(c => { totalImages += (c.images || []).length; });
-      scrapedCars.push(...cars);
+      cars.forEach(c => {
+        if (!scrapedCars.find(existing => existing.carUrl === c.carUrl)) {
+          totalImages += (c.images || []).length;
+          scrapedCars.push(c);
+        }
+      });
 
       $('carCount').textContent = scrapedCars.length;
       $('pageProgress').textContent = page + '/' + detectedTotalPages;
@@ -229,7 +233,7 @@ $('startBtn').addEventListener('click', async () => {
     updateProgress(100, 100, 'Complete! ' + scrapedCars.length + ' cars');
     $('jsonBtn').disabled = false;
     $('csvBtn').disabled = false;
-  } catch(err) {
+  } catch (err) {
     log('Error: ' + err.message, 'err');
   }
 
@@ -245,20 +249,20 @@ function fetchCarWalePage(apiUrl) {
   return fetch(apiUrl).then(r => r.json()).then(data => {
     const stocks = data.usedSearch?.stocks || [];
     return stocks.map(s => ({
-      carName: s.carName||'', makeYear: s.makeYear||'', price: s.price||'',
-      priceNumeric: s.priceNumeric||'', kms: s.km||'', kmsNumeric: s.kmNumeric||'',
-      fuel: s.fuel||'', additionalFuel: s.additionalFuel||'', transmission: s.transmission||'',
-      location: (s.areaName||'')+(s.areaName&&s.cityName?', ':'')+(s.cityName||''),
-      cityName: s.cityName||'', areaName: s.areaName||'',
-      carUrl: s.url ? 'https://www.carwale.com'+s.url : '',
-      makeName: s.makeName||'', modelName: s.modelName||'', versionName: s.versionName||'',
-      rootName: s.rootName||'', bodyStyleId: s.bodyStyleId||'',
-      sellerType: s.sellerType||'', sellerName: s.sellerName||'',
-      ownership: s.ownersId===1?'First Owner':s.ownersId===2?'Second Owner':s.ownersId===3?'Third Owner+':s.ownersId===6?'Unregistered':String(s.ownersId||''),
-      emi: s.emiFormatted||'', seatingCapacity: s.seatingCapacity||'',
-      overallCondition: s.overAllCondition||'', certProgId: s.certProgId||0,
+      carName: s.carName || '', makeYear: s.makeYear || '', price: s.price || '',
+      priceNumeric: s.priceNumeric || '', kms: s.km || '', kmsNumeric: s.kmNumeric || '',
+      fuel: s.fuel || '', additionalFuel: s.additionalFuel || '', transmission: s.transmission || '',
+      location: (s.areaName || '') + (s.areaName && s.cityName ? ', ' : '') + (s.cityName || ''),
+      cityName: s.cityName || '', areaName: s.areaName || '',
+      carUrl: s.url ? 'https://www.carwale.com' + s.url : '',
+      makeName: s.makeName || '', modelName: s.modelName || '', versionName: s.versionName || '',
+      rootName: s.rootName || '', bodyStyleId: s.bodyStyleId || '',
+      sellerType: s.sellerType || '', sellerName: s.sellerName || '',
+      ownership: s.ownersId === 1 ? 'First Owner' : s.ownersId === 2 ? 'Second Owner' : s.ownersId === 3 ? 'Third Owner+' : s.ownersId === 6 ? 'Unregistered' : String(s.ownersId || ''),
+      emi: s.emiFormatted || '', seatingCapacity: s.seatingCapacity || '',
+      overallCondition: s.overAllCondition || '', certProgId: s.certProgId || 0,
       isPremium: !!s.isPremium, isTrusted: !!s.isTrusted,
-      images: (s.stockImages||[]).filter(u => typeof u==='string' && u.startsWith('http'))
+      images: (s.stockImages || []).filter(u => typeof u === 'string' && u.startsWith('http'))
     }));
   }).catch(() => []);
 }
@@ -267,21 +271,21 @@ function fetchCarWalePage(apiUrl) {
 $('jsonBtn').addEventListener('click', () => {
   const fn = 'carwale_' + selectedCityMask + '.json';
   const json = JSON.stringify(scrapedCars, null, 2);
-  const blob = new Blob([json], {type:'application/json'});
-  chrome.downloads.download({url:URL.createObjectURL(blob), filename:fn, saveAs:true});
-  log('JSON: ' + fn + ' (' + Math.round(json.length/1024) + 'KB)', 'ok');
+  const blob = new Blob([json], { type: 'application/json' });
+  chrome.downloads.download({ url: URL.createObjectURL(blob), filename: fn, saveAs: true });
+  log('JSON: ' + fn + ' (' + Math.round(json.length / 1024) + 'KB)', 'ok');
 });
 
 $('csvBtn').addEventListener('click', () => {
-  function esc(v){if(!v&&v!==0)return'';v=String(v);if(v.includes(',')||v.includes('"')||v.includes('\n'))return'"'+v.replace(/"/g,'""')+'"';return v;}
-  const h=['Sr_No','Car_Name','Make_Year','Price','Price_Numeric','KMs','KMs_Numeric','Fuel','Additional_Fuel','Transmission','Location','City','Area','Car_URL','Make','Model','Version','Root_Name','Body_Style','Seller_Type','Seller_Name','Ownership','EMI','Seating_Capacity','Overall_Condition','Certified','Premium','Trusted','Image_1','Image_2','Image_3','Image_4','Image_5','Image_6','Image_7','Image_8','Image_9','Image_10','Image_11','Image_12','Image_13','Image_14','Image_15','Image_16','Image_17','Image_18','Image_19','Image_20'];
-  let csv = h.join(',')+'\n';
+  function esc(v) { if (!v && v !== 0) return ''; v = String(v); if (v.includes(',') || v.includes('"') || v.includes('\n')) return '"' + v.replace(/"/g, '""') + '"'; return v; }
+  const h = ['Sr_No', 'Car_Name', 'Make_Year', 'Price', 'Price_Numeric', 'KMs', 'KMs_Numeric', 'Fuel', 'Additional_Fuel', 'Transmission', 'Location', 'City', 'Area', 'Car_URL', 'Make', 'Model', 'Version', 'Root_Name', 'Body_Style', 'Seller_Type', 'Seller_Name', 'Ownership', 'EMI', 'Seating_Capacity', 'Overall_Condition', 'Certified', 'Premium', 'Trusted', 'Image_1', 'Image_2', 'Image_3', 'Image_4', 'Image_5', 'Image_6', 'Image_7', 'Image_8', 'Image_9', 'Image_10', 'Image_11', 'Image_12', 'Image_13', 'Image_14', 'Image_15', 'Image_16', 'Image_17', 'Image_18', 'Image_19', 'Image_20'];
+  let csv = h.join(',') + '\n';
   scrapedCars.forEach(c => {
-    const im=c.images||[];
-    csv += [c.sr_no,esc(c.carName),c.makeYear,esc(c.price),esc(c.priceNumeric),esc(c.kms),esc(c.kmsNumeric),esc(c.fuel),esc(c.additionalFuel),esc(c.transmission),esc(c.location),esc(c.cityName),esc(c.areaName),esc(c.carUrl),esc(c.makeName),esc(c.modelName),esc(c.versionName),esc(c.rootName),esc(c.bodyStyleId),esc(c.sellerType),esc(c.sellerName),esc(c.ownership),esc(c.emi),esc(c.seatingCapacity),esc(c.overallCondition),esc(c.certProgId),c.isPremium,c.isTrusted,...Array.from({length:20},(_,i)=>esc(im[i]||''))].join(',')+'\n';
+    const im = c.images || [];
+    csv += [c.sr_no, esc(c.carName), c.makeYear, esc(c.price), esc(c.priceNumeric), esc(c.kms), esc(c.kmsNumeric), esc(c.fuel), esc(c.additionalFuel), esc(c.transmission), esc(c.location), esc(c.cityName), esc(c.areaName), esc(c.carUrl), esc(c.makeName), esc(c.modelName), esc(c.versionName), esc(c.rootName), esc(c.bodyStyleId), esc(c.sellerType), esc(c.sellerName), esc(c.ownership), esc(c.emi), esc(c.seatingCapacity), esc(c.overallCondition), esc(c.certProgId), c.isPremium, c.isTrusted, ...Array.from({ length: 20 }, (_, i) => esc(im[i] || ''))].join(',') + '\n';
   });
   const fn = 'carwale_' + selectedCityMask + '.csv';
-  const blob = new Blob([csv],{type:'text/csv;charset=utf-8;'});
-  chrome.downloads.download({url:URL.createObjectURL(blob), filename:fn, saveAs:true});
-  log('CSV: ' + fn + ' (' + Math.round(csv.length/1024) + 'KB)', 'ok');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  chrome.downloads.download({ url: URL.createObjectURL(blob), filename: fn, saveAs: true });
+  log('CSV: ' + fn + ' (' + Math.round(csv.length / 1024) + 'KB)', 'ok');
 });
