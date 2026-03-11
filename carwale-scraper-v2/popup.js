@@ -34,6 +34,8 @@ let selectedCityName = '';
 let detectedTotalPages = 0;
 let detectedTotalCars = 0;
 let currentTabId = null;
+let currentToken = '';
+let currentCityId = '';
 
 const $ = id => document.getElementById(id);
 
@@ -145,6 +147,8 @@ async function selectCity(name, mask) {
     const info = res[0].result;
     detectedTotalCars = info.totalCars;
     detectedTotalPages = info.totalPages;
+    currentToken = info.token || '';
+    currentCityId = info.cityId || '0';
 
     $('totalPagesTag').textContent = detectedTotalPages + ' pages';
     $('totalCarsTag').textContent = detectedTotalCars.toLocaleString() + ' cars';
@@ -164,16 +168,20 @@ async function selectCity(name, mask) {
 
 // ========== INJECTED: Detect city info via API ==========
 function detectCityInfo(cityMask) {
+  let token = document.querySelector('input[name="__RequestVerificationToken"]')?.value || '';
+  let cityId = "0";
+  const m = document.body.innerHTML.match(/"cityId":\s*"?(\d+)"?/) || document.body.innerHTML.match(/"cityMaskId":\s*"?(\d+)"?/);
+  if (m) { cityId = m[1]; }
+
   return fetch('/api/used/search/v1?cityMakeRootName=' + cityMask + '&url=/used/' + cityMask + '/')
     .then(r => r.json())
     .then(data => {
       const total = data.usedSearch?.totalCount || 0;
-      // Detect pages from pagination or estimate
       let pages = Math.ceil(total / 24);
       if (pages < 1) pages = 1;
-      return { totalCars: total, totalPages: pages };
+      return { totalCars: total, totalPages: pages, token: token, cityId: cityId };
     })
-    .catch(() => ({ totalCars: 0, totalPages: 0 }));
+    .catch(() => ({ totalCars: 0, totalPages: 0, token: '', cityId: '' }));
 }
 
 // ========== START SCRAPING ==========
@@ -206,12 +214,19 @@ $('startBtn').addEventListener('click', async () => {
       const res = await chrome.scripting.executeScript({
         target: { tabId: currentTabId },
         func: fetchCarWalePage,
-        args: [apiUrl]
+        args: [apiUrl, page, currentToken, currentCityId, (page - 1) * 24, scrapedCars.length || 32]
       });
 
       const cars = res[0].result || [];
       cars.forEach(c => {
-        if (!scrapedCars.find(existing => existing.carUrl === c.carUrl)) {
+        const fingerprint = [c.carName, c.priceNumeric, c.makeYear, c.kmsNumeric].join('|');
+        const isUrlDup = scrapedCars.some(existing => existing.carUrl === c.carUrl);
+        const isLogicalDup = scrapedCars.some(existing =>
+          [existing.carName, existing.priceNumeric, existing.makeYear, existing.kmsNumeric].join('|') === fingerprint
+        );
+        const isOtherCity = c.cityName && selectedCityName && c.cityName.toLowerCase() !== selectedCityName.toLowerCase();
+
+        if (!isUrlDup && !isLogicalDup && !isOtherCity) {
           totalImages += (c.images || []).length;
           scrapedCars.push(c);
         }
@@ -245,9 +260,26 @@ $('startBtn').addEventListener('click', async () => {
 $('stopBtn').addEventListener('click', () => { shouldStop = true; log('Stopping...', 'err'); });
 
 // ========== INJECTED: Fetch one page ==========
-function fetchCarWalePage(apiUrl) {
-  return fetch(apiUrl).then(r => r.json()).then(data => {
-    const stocks = data.usedSearch?.stocks || [];
+function fetchCarWalePage(apiUrl, page, token, cityId, lcr, stockfetched) {
+  let fetchPromise;
+  if (page === 1 || !token || !cityId || cityId === "0") {
+    fetchPromise = fetch(apiUrl).then(r => r.json()).then(data => data.usedSearch?.stocks || []);
+  } else {
+    fetchPromise = fetch('/api/used/stocks/filters/', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'serverdomain': 'CarWale',
+        'requestverificationtoken': token
+      },
+      body: JSON.stringify({
+        pn: page, city: cityId, ps: "24", sc: "-1", so: "-1",
+        lcr: lcr, shouldfetchnearbycars: "False", stockfetched: String(stockfetched), excludestocks: ""
+      })
+    }).then(r => r.json()).then(data => data.stocks || []);
+  }
+
+  return fetchPromise.catch(() => []).then(stocks => {
     return stocks.map(s => ({
       carName: s.carName || '', makeYear: s.makeYear || '', price: s.price || '',
       priceNumeric: s.priceNumeric || '', kms: s.km || '', kmsNumeric: s.kmNumeric || '',
@@ -264,7 +296,7 @@ function fetchCarWalePage(apiUrl) {
       isPremium: !!s.isPremium, isTrusted: !!s.isTrusted,
       images: (s.stockImages || []).filter(u => typeof u === 'string' && u.startsWith('http'))
     }));
-  }).catch(() => []);
+  });
 }
 
 // ========== DOWNLOADS ==========
